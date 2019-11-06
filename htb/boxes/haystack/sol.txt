@@ -1,0 +1,43 @@
+// Findings
+
+
+Web site
+
+http://10.10.10.115/
+
+
+save image
+execute
+$ cat image.jpg
+
+last line is Base64 encoded
+visit base64 site
+translate the last line from spanish
+
+"The needle in the heystack is "key" "
+
+to open port 9200
+
+Visit port
+http://10.10.10.115:9200/
+
+
+
+
+keywords
+we can visit the following dirs as we found the on a metasploit scan
+
+.kibana          http://10.10.10.115:9200/.kibana/
+bank                http://10.10.10.115:9200/bank/
+quotes           http://10.10.10.115:9200/quotes/    (in spanish)
+
+
+
+elastic search cheat-sheet
+clave (spanish) = key (english)
+$ curl -X GET http://10.10.10.115:9200/quotes/_search?q=clave
+
+there are two BASE64 hashes, decode them (username and pass).
+
+username:  security
+password :  spanish.is.key
