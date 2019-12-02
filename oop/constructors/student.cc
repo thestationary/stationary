@@ -101,7 +101,8 @@ Student& Student::operator=(const Student& s)
   // name = s.name; Careful: this is the result of default assignment
   if (this != &s) { // Careful not to assign to itself, especially
   // if some storage reclaim was made within the body
-    delete[] name;
+     
+    if (name != NULL) delete[] name;
     name = new char[strlen(s.name)+1];
     strcpy(name,s.name);
     no = s.no;

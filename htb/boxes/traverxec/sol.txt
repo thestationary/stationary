@@ -1,4 +1,4 @@
-1. exploit 47574 from nostromo
+1. 
 searchsploit nostromo
 get the first one and import it into msfconsole
 
@@ -107,10 +107,12 @@ if we copy the server-stats.sh file as mycopy.sh
 and change permissions to chmodo 777 if needed
 then as we see from gtfobins we only need the "sudo journalctl"
 . We erase the cat command
-we execure the script:
+we execute the script:
 ./mycopy.sh
 
 while viewing the document type:
 !/bin/sh
+
+just entered visual mode
 
 we got access to root

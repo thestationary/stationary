@@ -1,8 +1,13 @@
 CC = g++
 CFLAGS = -g -Wall
 
+
+
 bitwise: main.o student.o
 		$(CC) main.o student.o -o bitwise
+
+all: main.cc student.cc
+		$(CC) -DCOPY -DASSIGN main.cc student.cc -o all 
 
 copy: main-copy.o student-copy.o
 		$(CC)  main-copy.o student-copy.o -o copy
@@ -34,4 +39,4 @@ student.o: student.cc
 .PHONY: clean
 
 clean:
-	rm -f *.o bitwise assign copy
+	rm -f *.o bitwise assign copy all

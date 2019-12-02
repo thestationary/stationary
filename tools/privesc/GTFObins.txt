@@ -1,0 +1,6 @@
+https://gtfobins.github.io/
+
+to find any binary you find suspicious in a file system you
+want to gain priviledges.
+
+

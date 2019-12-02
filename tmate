@@ -1,0 +1,8 @@
+it uses tmux
+
+to get the ssh key
+$ tmate
+$ tmate show-messages
+
+
+get the key with the copy-pase of tmux command and share it
