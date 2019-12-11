@@ -1,1 +1,3 @@
-https://github.com/magnumripper/JohnTheRipper
+
+
+$ git clone https://github.com/magnumripper/JohnTheRipper
