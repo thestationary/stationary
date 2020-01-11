@@ -2,7 +2,8 @@
 
 
 ### Foothold
-execute the exploit.sh to get a shell (found it from exploitdb for Apache 2.4.29)
+execute the exploit.sh to get a shell (found it from exploitdb
+  when searched for OpenNetAdmin)
 
 
 ### User #1
@@ -65,3 +66,10 @@ c9b2cf07d40807e62af62660f0c81b5f
 
 
 ### root
+
+while in joanna user, type sudo -l
+
+execute the command, and then GTFOBins for nano
+
+root hash:
+2f907ed450b361b2c2bf4e8795d5b561
