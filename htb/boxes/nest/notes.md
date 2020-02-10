@@ -21,11 +21,19 @@ SMB1 disabled -- no workgroup available
 $ smbclient //10.10.10.178/Data
             or            /Users
             or            /C$
-						or						/Shared
+            or			 /Secure$
+```
+
+```
+$ smbclient //10.10.10.178/Users -U TempUser
 ```
 
 ### to download the files use:
 `msf > use auxiliary/admin/smb/download_file`
+
+or
+`smbget  smb://username:password@ip/<share>/<path to file or folder>`
+-R argument for folders
 
 some interesting files contain the following:
 
@@ -49,6 +57,3 @@ Password: welcome2019
 <File filename="\\HTB-NEST\Secure$\IT\Carl\Temp.txt"/>
 <File filename="C:\Users\C.Smith\Desktop\todo.txt"/>
 ```
-
-
-smbclient  //10.10.10.178/TempUsers -U TempUser
