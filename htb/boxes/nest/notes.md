@@ -1,4 +1,5 @@
 ### Listing the shares:
+```
 $ smbclient  -L //10.10.10.178
 Enter WORKGROUP\root's password:
 
@@ -11,21 +12,20 @@ Enter WORKGROUP\root's password:
         Secure$         Disk      
         Users           Disk      
 SMB1 disabled -- no workgroup available
-
+```
 
 
 
 ### You can do the following to access the shares:
-
+```
 $ smbclient //10.10.10.178/Data
-                        /Users
-                        /C$
-												/Shared
-
+            or            /Users
+            or            /C$
+						or						/Shared
+```
 
 ### to download the files use:
-msf > use auxiliary/admin/smb/download_file
-
+`msf > use auxiliary/admin/smb/download_file`
 
 some interesting files contain the following:
 
