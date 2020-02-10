@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="enum" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1581254991.4" ts_lastsave="1581255656.72" unique_id="1">
+		<rich_text justification="left"></rich_text>
+		<codebox char_offset="0" frame_height="350" frame_width="63" highlight_brackets="True" show_line_numbers="False" syntax_highlighting="plain-text" width_in_pixels="False">root@system262:~/Documents/stationary/htb/boxes/nest# nmap -sV -sC -oA nmap 10.10.10.178
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-02-09 15:33 EET
+Nmap scan report for 10.10.10.178 (10.10.10.178)
+Host is up (0.054s latency).
+Not shown: 999 filtered ports
+PORT    STATE SERVICE       VERSION
+445/tcp open  microsoft-ds?
+
+Host script results:
+|_clock-skew: -1s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-02-09T13:33:56
+|_  start_date: 2020-02-09T11:39:36
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 61.36 seconds
+</codebox>
+	</node>
+</cherrytree>
