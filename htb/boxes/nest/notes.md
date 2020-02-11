@@ -24,6 +24,8 @@ $ smbclient //10.10.10.178/Data
             or			 /Secure$
 ```
 
+
+### enum 01
 ```
 $ smbclient //10.10.10.178/Users -U TempUser
 ```
@@ -57,3 +59,24 @@ Password: welcome2019
 <File filename="\\HTB-NEST\Secure$\IT\Carl\Temp.txt"/>
 <File filename="C:\Users\C.Smith\Desktop\todo.txt"/>
 ```
+
+
+#### file 03
+
+```
+<?xml version="1.0"?>
+<ConfigFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="ht>
+  <Port>389</Port>
+  <Username>c.smith</Username>
+  <Password>fTEzAfYDoz1YzkqhQkH6GQFYKp1XY5hm7bjOP86yYxE=</Password>
+</ConfigFile>
+```
+
+
+
+#### more enumeration 02
+
+```
+smbget -R smb://TempUser:welcome2019@10.10.10.178/Secure$/IT/Carl/
+```
+to download all files
